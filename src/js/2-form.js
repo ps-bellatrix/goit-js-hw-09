@@ -16,8 +16,8 @@ function populateForm() {
     formData.email = parsedData.email || '';
     formData.message = parsedData.message || '';
 
-    form.elements.email.value = formState.email;
-    form.elements.message.value = formState.message;
+    form.elements.email.value = formData.email;
+    form.elements.message.value = formData.message;
   } catch (error) {
     console.error('Error parsing data from localStorage', error);
   }
