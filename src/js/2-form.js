@@ -1,4 +1,4 @@
-const formState = {
+const formData = {
   email: '',
   message: '',
 };
@@ -13,8 +13,8 @@ function populateForm() {
 
   try {
     const parsedData = JSON.parse(savedData);
-    formState.email = parsedData.email || '';
-    formState.message = parsedData.message || '';
+    formData.email = parsedData.email || '';
+    formData.message = parsedData.message || '';
 
     form.elements.email.value = formState.email;
     form.elements.message.value = formState.message;
@@ -29,25 +29,25 @@ form.addEventListener('input', event => {
   const fieldName = event.target.name;
   const fieldValue = event.target.value;
 
-  formState[fieldName] = fieldValue.trim();
+  formData[fieldName] = fieldValue.trim();
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(formState));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 });
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  const emailValue = formState.email.trim();
-  const messageValue = formState.message.trim();
+  const emailValue = formData.email.trim();
+  const messageValue = formData.message.trim();
 
   if (!emailValue || !messageValue) {
     alert('Fill please all fields');
     return;
   }
 
-  console.log(formState);
+  console.log(formData);
 
   localStorage.removeItem(STORAGE_KEY);
-  formState.email = '';
-  formState.message = '';
+  formData.email = '';
+  formData.message = '';
   form.reset();
 });
